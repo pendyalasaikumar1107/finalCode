@@ -16,14 +16,11 @@ import com.tcs.profileEvaluation.entity.Profilestatus;
 import com.tcs.profileEvaluation.po.EvaluatorAssignedPo;
 import com.tcs.profileEvaluation.po.Profilepo;
 import com.tcs.profileEvaluation.services.EvaluatorService;
-import com.tcs.profileEvaluation.services.LeadService;
 import com.tcs.profileEvaluation.services.ProfileService;
 @RestController
 @CrossOrigin
 public class ProfileController {
 
-	@Autowired
-	LeadService leadService;
 	@Autowired
 	ProfileService profileService;
 	@Autowired
