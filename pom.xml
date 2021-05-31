@@ -13,7 +13,6 @@
 	<artifactId>profileEvaluation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>profileEvaluation</name>
-	<packaging>war</packaging>
 	<description>Profile evaluation project</description>
 	<properties>
 		<java.version>16</java.version>
