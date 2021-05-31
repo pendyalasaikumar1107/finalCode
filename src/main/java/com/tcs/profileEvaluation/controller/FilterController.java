@@ -22,12 +22,12 @@ public class FilterController {
 		return fservice.getTodayProfiles(date);
 	}
 	
-//	get monthly hired and not hired array
 	@GetMapping("/month/{month}")
 	public int[] profileWithMonth(@PathVariable String month){
 		return fservice.monthProfiles(month);
 	}
-	@GetMapping("/allProfiles")
+	
+	@GetMapping("/allTimeFilter")
 	public int[] getAllProfileData() {
 		return fservice.getAllProfileData();
 	}

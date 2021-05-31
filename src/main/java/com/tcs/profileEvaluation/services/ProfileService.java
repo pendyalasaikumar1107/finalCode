@@ -1,5 +1,6 @@
 package com.tcs.profileEvaluation.services;
 
+import java.util.List;
 import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,10 @@ public class ProfileService {
 			repo.save(profile);
 			return "success";
 		}
+	}
+	
+	public List<Profile> getAllProfile() {
+		return repo.findAll();
 	}
 
 }
