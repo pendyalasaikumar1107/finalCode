@@ -16,7 +16,7 @@ public class ProfileService {
 	ProfileRepo Profilerepo;
 
 	public String addProfile(Profilepo profilepo) {
-		var profile = new Profile();
+		Profile profile = new Profile();
 		profile.setId(profilepo.getId());
 		profile.setName(profilepo.getName());
 		profile.setExperience(profilepo.getExperience());
@@ -48,7 +48,7 @@ public class ProfileService {
 	public String uploadFile(Profile[] profilearr) {
 		Profile[] profileList =  profilearr;
 		for(Profile prof: profileList) {
-			var profile = new Profile();
+			Profile profile = new Profile();
 			profile.setId(prof.getId());
 			profile.setName(prof.getName());
 			profile.setExperience(prof.getExperience());
