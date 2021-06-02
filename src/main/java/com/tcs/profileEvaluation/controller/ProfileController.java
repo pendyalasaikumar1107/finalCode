@@ -17,6 +17,7 @@ import com.tcs.profileEvaluation.po.EvaluatorAssignedPo;
 import com.tcs.profileEvaluation.po.Profilepo;
 import com.tcs.profileEvaluation.services.EvaluatorService;
 import com.tcs.profileEvaluation.services.ProfileService;
+
 @RestController
 @CrossOrigin
 public class ProfileController {
@@ -24,27 +25,32 @@ public class ProfileController {
 	@Autowired
 	ProfileService profileService;
 	@Autowired
-	EvaluatorService eservice;
+	EvaluatorService Evaluatorservice;
+
 	
+	@PostMapping("/uploadFile")
+	public String uploadFile(@RequestBody Profile[] profilearr) {
+		return profileService.uploadFile(profilearr);
+	}
 	
 	@PostMapping("/addProfile")
 	public String addProfile(@Valid @RequestBody Profilepo profilepo) {
 		return profileService.addProfile(profilepo);
-		
+
 	}
-	
+
 	@GetMapping("/getProfiles")
 	public List<Profile> getData() {
 		return profileService.getAllProfile();
 	}
-	
+
 	@PutMapping("/updateProfile")
 	public String putEvaluator(@Valid @RequestBody EvaluatorAssignedPo eval) {
-		return eservice.updateEvaluator(eval);
+		return Evaluatorservice.updateEvaluator(eval);
 	}
-	
+
 	@PutMapping("/statusupdate")
 	public String updateprofile(@RequestBody Profilestatus status) {
-		return eservice.updateprofile(status);
+		return Evaluatorservice.updateprofile(status);
 	}
 }

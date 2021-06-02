@@ -19,18 +19,17 @@ import com.tcs.profileEvaluation.repository.StatusRepo;
 public class EvaluatorService {
 
 	@Autowired
-	EvaluatorRepo erepo;
+	EvaluatorRepo evaluatorrepo;
 	@Autowired
-	ProfileRepo repo;
+	ProfileRepo Profilerepo;
 	@Autowired
 	EvaluatorAssigned evalAssigned;
 	@Autowired
 	StatusRepo statusrepo;
 
 	public List<Evaluator> getAllEvaluators() {
-		return erepo.findAll();
+		return evaluatorrepo.findAll();
 	}
-
 
 	public String updateprofile(Profilestatus status) {
 		statusrepo.save(status);
@@ -39,28 +38,28 @@ public class EvaluatorService {
 	}
 
 	public List<Profile> getProfilesByEvaluatorId(int id) {
-		List<Integer> myList1 = new ArrayList<Integer>();
-		List<Evaluatorassigned> myList = new ArrayList<Evaluatorassigned>();
+		List<Integer> evaluatorProfiles = new ArrayList<Integer>();
+		List<Evaluatorassigned> evaluatorList = new ArrayList<Evaluatorassigned>();
 		System.out.println("Before mylist");
-		myList = evalAssigned.findByevalid(id);
-		System.out.println("After mylist"+myList);
-		for (int i = 0; i < myList.size(); i++) {
-			myList1.add(myList.get(i).getId());
+		evaluatorList = evalAssigned.findByevalid(id);
+		System.out.println("After mylist" + evaluatorList);
+		for (int i = 0; i < evaluatorList.size(); i++) {
+			evaluatorProfiles.add(evaluatorList.get(i).getId());
 		}
-		if (myList1.isEmpty()) {
+		if (evaluatorProfiles.isEmpty()) {
 			return null;
 		} else {
-			return repo.findAllById(myList1);
+			return Profilerepo.findAllById(evaluatorProfiles);
 		}
 	}
-	
-	public String updateEvaluator(EvaluatorAssignedPo eval) {
-		Evaluatorassigned evaluatorAssi = new Evaluatorassigned();
-		evaluatorAssi.setEvalname(eval.getEvalname());
-		evaluatorAssi.setEvalid(eval.getEvalid());
-		evaluatorAssi.setId(eval.getId());
 
-		evalAssigned.save(evaluatorAssi);
+	public String updateEvaluator(EvaluatorAssignedPo eval) {
+		Evaluatorassigned evaluatorAssigned = new Evaluatorassigned();
+		evaluatorAssigned.setEvalname(eval.getEvalname());
+		evaluatorAssigned.setEvalid(eval.getEvalid());
+		evaluatorAssigned.setId(eval.getId());
+
+		evalAssigned.save(evaluatorAssigned);
 		return "Evaluator Assigned";
 	}
 }

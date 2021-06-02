@@ -14,22 +14,22 @@ import com.tcs.profileEvaluation.services.FilterService;
 @CrossOrigin
 public class FilterController {
 	@Autowired
-	FilterService fservice;
-	
+	FilterService Filterservice;
+
 	@GetMapping("/date")
-	public int[] profileWithDate(){
-		LocalDate	date = java.time.LocalDate.now();
-		return fservice.getTodayProfiles(date);
+	public int[] profileWithDate() {
+		LocalDate date = java.time.LocalDate.now();
+		return Filterservice.getTodayProfiles(date);
 	}
-	
+
 	@GetMapping("/month/{month}")
-	public int[] profileWithMonth(@PathVariable String month){
-		return fservice.monthProfiles(month);
+	public int[] profileWithMonth(@PathVariable String month) {
+		return Filterservice.monthProfiles(month);
 	}
-	
+
 	@GetMapping("/allTimeFilter")
 	public int[] getAllProfileData() {
-		return fservice.getAllProfileData();
+		return Filterservice.getAllProfileData();
 	}
 
 }

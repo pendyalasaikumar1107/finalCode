@@ -2,6 +2,7 @@ package com.tcs.profileEvaluation.services;
 
 import java.util.List;
 import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +13,10 @@ import com.tcs.profileEvaluation.repository.ProfileRepo;
 @Service
 public class ProfileService {
 	@Autowired
-	ProfileRepo repo;
+	ProfileRepo Profilerepo;
 
 	public String addProfile(Profilepo profilepo) {
-		Profile profile = new Profile();
+		var profile = new Profile();
 		profile.setId(profilepo.getId());
 		profile.setName(profilepo.getName());
 		profile.setExperience(profilepo.getExperience());
@@ -32,16 +33,40 @@ public class ProfileService {
 			profile.setId(number);
 		}
 
-		if (repo.existsById(profile.getId())) {
+		if (Profilerepo.existsById(profile.getId())) {
 			return "Sorry";
 		} else {
-			repo.save(profile);
+			Profilerepo.save(profile);
 			return "success";
 		}
 	}
-	
+
 	public List<Profile> getAllProfile() {
-		return repo.findAll();
+		return Profilerepo.findAll();
 	}
 
+	public String uploadFile(Profile[] profilearr) {
+		Profile[] profileList =  profilearr;
+		for(Profile prof: profileList) {
+			var profile = new Profile();
+			profile.setId(prof.getId());
+			profile.setName(prof.getName());
+			profile.setExperience(prof.getExperience());
+			profile.setLocation(prof.getLocation());
+			profile.setMobileno(prof.getMobileno());
+			profile.setSkill1(prof.getSkill1());
+			profile.setSkill2(prof.getSkill2());
+			profile.setVendor(prof.getVendor());
+			profile.setDate(java.time.LocalDate.now());
+			if (prof.getId() == 0) {
+				Random rnd = new Random();
+				int number = rnd.nextInt(999999);
+				profile.setId(number);
+			}
+			if(prof.getId() != 0 && !Profilerepo.existsById(prof.getId())) {
+				Profilerepo.save(profile);
+			}
+		}
+		return "File Uploaded Successfully";
+	}
 }

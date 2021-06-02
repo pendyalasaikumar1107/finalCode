@@ -10,28 +10,35 @@ public class Profilestatus {
 	private String status;
 	private String comments;
 	private String evalname;
-	
+
 	public String getEvalname() {
 		return evalname;
 	}
+
 	public void setEvalname(String evalname) {
 		this.evalname = evalname;
 	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public String getComments() {
 		return comments;
 	}
+
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
