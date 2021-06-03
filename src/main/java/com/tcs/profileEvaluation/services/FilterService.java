@@ -22,32 +22,32 @@ public class FilterService {
 
 	public int[] getTodayProfiles(LocalDate date) {
 		int[] dateFilter = new int[10];
-		List<Integer> list = Profilerepo.findByDate(date);
-		dateFilter = Filter(list);
-		dateFilter[0] = list.size();
+		List<Integer> TodayProfilelist = Profilerepo.findByDate(date);
+		dateFilter = Filter(TodayProfilelist);
+		dateFilter[0] = TodayProfilelist.size();
 		dateFilter[3] = dateFilter[0] - dateFilter[1] - dateFilter[2];
 		return dateFilter;
 	}
 
 	public int[] monthProfiles(String month) {
 		int[] monthFilter = new int[10];
-		List<Integer> list = Profilerepo.findByMonth(month);
-		monthFilter = Filter(list);
-		monthFilter[0] = list.size();
+		List<Integer> MonthProfilelist = Profilerepo.findByMonth(month);
+		monthFilter = Filter(MonthProfilelist);
+		monthFilter[0] = MonthProfilelist.size();
 		monthFilter[3] = monthFilter[0] - monthFilter[1] - monthFilter[2];
 		return monthFilter;
 	}
 
 	public int[] getAllProfileData() {
 		int[] allProfiles = new int[10];
-		List<Profile> list = Profilerepo.findAll();
+		List<Profile> profileList = Profilerepo.findAll();
 		List<Integer> profileId = new ArrayList<>();
-		for (Profile pro : list) {
+		for (Profile pro : profileList) {
 			profileId.add(pro.getId());
 		}
 
 		allProfiles = Filter(profileId);
-		allProfiles[0] = list.size();
+		allProfiles[0] = profileList.size();
 		allProfiles[3] = allProfiles[0] - allProfiles[1] - allProfiles[2];
 		return allProfiles;
 	}
