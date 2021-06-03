@@ -3,6 +3,8 @@ package com.tcs.profileEvaluation.services;
 import java.util.List;
 import java.util.Random;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,9 +47,9 @@ public class ProfileService {
 		return Profilerepo.findAll();
 	}
 
-	public String uploadFile(Profile[] profilearr) {
+	public String uploadFile(@Valid Profile[] profilearr) {
 		Profile[] profileList =  profilearr;
-		for(Profile prof: profileList) {
+		for(@Valid Profile prof: profileList) {
 			Profile profile = new Profile();
 			profile.setId(prof.getId());
 			profile.setName(prof.getName());
@@ -63,7 +65,7 @@ public class ProfileService {
 				int number = rnd.nextInt(999999);
 				profile.setId(number);
 			}
-			if(prof.getId() != 0 && !Profilerepo.existsById(prof.getId())) {
+			if(profile.getId() != 0 && !Profilerepo.existsById(prof.getId())) {
 				Profilerepo.save(profile);
 			}
 		}
